@@ -1,0 +1,83 @@
+* { box-sizing: border-box; }
+
+:root {
+    --lunghezzalato: calc((100vh / 100) * 70);
+    --lunghezzalatomezzi: calc((100vh / 200) * 70);
+    --scrollvaluehor: 0deg;
+    --scrollvaluever: 0deg;
+    --scollvaluehorsecond: 0deg;
+}
+
+body {
+  font-family: sans-serif;
+  height: 10000px;
+  color: white !important;
+  width: 100%;
+}
+/* FACE 1 */
+
+.testo1elem1{
+  height: auto;
+}
+
+.maintab{
+  height: var(--lunghezzalato) !important;
+}
+
+
+
+
+.scene {
+  width: var(--lunghezzalato);
+  height: var(--lunghezzalato);
+  border: 1px solid #CCC;
+  margin: auto;
+  perspective: 160vh;
+  position: fixed;
+  top: 100px;
+  left: 400px;
+}
+
+.cube {
+  width: var(--lunghezzalato);
+  height: var(--lunghezzalato);
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-var(--lunghezzalatomezzi));
+  transition: transform 1s;
+}
+
+.cube.show-front  { transform: translateZ(-100px) rotateY(   0deg); }
+.cube.show-right  { transform: translateZ(-100px) rotateY( -90deg); }
+.cube.show-back   { transform: translateZ(-100px) rotateY(-180deg); }
+.cube.show-left   { transform: translateZ(-100px) rotateY(  90deg); }
+.cube.show-top    { transform: translateZ(-100px) rotateX( -90deg); }
+.cube.show-bottom { transform: translateZ(-100px) rotateX(  90deg); }
+
+.cube__face {
+  position: absolute;
+  width: var(--lunghezzalato);
+  height: var(--lunghezzalato);
+  border: 2px solid black;
+  font-size: 0,6em;
+  font-weight: bold;
+  text-align: center;
+  background-color: white;
+  overflow: hidden;
+}
+
+.cube__face--front  { background: rgba(0, 0, 0, 0.8); }
+.cube__face--right  { background: rgba(0, 0, 0, 0.8); }
+.cube__face--back   { background: rgba(0, 0, 0, 0.8); }
+.cube__face--left   { background: rgba(0, 0, 0, 0.8); }
+.cube__face--top    { background: rgba(0, 0, 0, 0.8); }
+.cube__face--bottom { background: rgba(0, 0, 0, 0.8); }
+
+.cube__face--front  { transform: rotateX(calc(0deg + var(--scrollvaluever))) rotateY(calc(0deg + var(--scrollvaluehor) + var(--scollvaluehorsecond))) translateZ(var(--lunghezzalatomezzi)); }
+.cube__face--right  { transform: rotateX(calc(0deg + var(--scrollvaluever))) rotateY(calc(90deg + var(--scrollvaluehor))) translateZ(var(--lunghezzalatomezzi)); }
+.cube__face--back   { transform: rotateX(calc(0deg + var(--scrollvaluever))) rotateY(calc(180deg + var(--scrollvaluehor))) translateZ(var(--lunghezzalatomezzi)); }
+.cube__face--left   { transform: rotateX(calc(0deg + var(--scrollvaluever))) rotateY(calc(-90deg + var(--scrollvaluehor))) translateZ(var(--lunghezzalatomezzi)); }
+.cube__face--top    { transform: rotateY(calc(180deg + var(--scrollvaluehor))) rotateX(calc(90deg + var(--scrollvaluever))) translateZ(var(--lunghezzalatomezzi)); }
+.cube__face--bottom { transform: rotateY(calc(180deg + var(--scrollvaluehor))) rotateX(calc(-90deg + var(--scrollvaluever))) translateZ(var(--lunghezzalatomezzi)); }
+
+label { margin-right: 10px; }
